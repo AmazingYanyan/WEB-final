@@ -1,0 +1,720 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>Shop</title>
+
+	<style>
+		.text_product_id {
+			display: none
+		}
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_dresses_fun(this)" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_tops_fun(this)" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_jeans_fun(this)" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_pants_fun(this)" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_skirts_fun(this)" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="/cart">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> <!-- 隐藏搜索框 -->
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+			<div id="querytype" val="<%= type %>"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="row gutter-40 col-mb-80">
+						<!-- Post Content
+                    ============================================= -->
+						<div class="postcontent col-lg-9 order-lg-last">
+
+							<!-- Shop
+                        ============================================= -->
+							<div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+
+								<% item_list.forEach(function(item) { %>
+									<div class="product col-md-4 col-sm-6 sf-<%= item.product_type %>">
+										<div class="grid-inner">
+											<div class="product-image">
+												<% img_list.forEach(function(img) { %>
+													<% if (img.product_id==item._id) { %>
+														<% img.images.forEach(function(i) { %>
+															<a href="#"><img src="<%= i %>"
+																	alt="Image path not found"></a>
+															<% }); %>
+																<% if (item.inventory_amount==0) { %>
+																	<div class="sale-flash badge bg-secondary p-2">Out
+																		of Stock</div>
+																	<% } else if (item.inventory_amount < 5) { %>
+																		<div class="sale-flash badge bg-secondary p-2">
+																			Only <%= item.inventory_amount %> available!
+																		</div>
+																		<% } else if (item.sale_price <
+																			item.original_price) { %>
+																			<div
+																				class="sale-flash badge bg-success p-2 text-uppercase">
+																				Sale!</div>
+																			<% } %>
+																				<% } %>
+																					<% }); %>
+																						<div class="bg-overlay">
+																							<div class="bg-overlay-content align-items-end justify-content-between"
+																								data-hover-animate="fadeIn"
+																								data-hover-speed="400">
+																								<% if
+																									(item.inventory_amount==0){
+																									%>
+																									<a style="cursor: not-allowed;--bs-btn-hover-color:none!important;--bs-btn-color:#878686!important;"
+																										href="#"
+																										class="btn btn-dark me-2"><i
+																											class="icon-shopping-cart"></i></a>
+																									<% }else{ %>
+																										<a onclick="btn_add_cart(this)"
+																											class="btn btn-dark me-2"><i
+																												class="icon-shopping-cart"></i></a>
+																										<% } %>
+
+																											<a href="/small-shop-item?product_id=<%= item._id %>"
+																												class="btn btn-dark"
+																												data-lightbox="ajax"><i
+																													class="icon-line-expand"></i></a>
+																							</div>
+																							<div
+																								class="bg-overlay-bg bg-transparent">
+																							</div>
+																						</div>
+											</div>
+											<div class="product-desc">
+												<div class="text_product_id">
+													<%= item._id %>
+												</div>
+												<div class="product-title">
+													<h3><a href="/small-shop-item?product_id=<%= item._id %>"
+															data-lightbox="ajax">
+															<%= item.product_name %>
+														</a></h3>
+												</div>
+												<div class="product-price">
+													<% if (item.original_price !=item.sale_price) { %>
+														<del>$<%= item.original_price %></del>
+														<% } %>
+															<ins>$<%= item.sale_price %></ins>
+												</div>
+												<div class="product-rating">
+													<i class="icon-star3"></i>
+													<i class="icon-star3"></i>
+													<i class="icon-star3"></i>
+													<i class="icon-star-half-full"></i>
+													<i class="icon-star-empty"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+									<% }); %>
+
+
+
+							</div><!-- #shop end -->
+
+						</div><!-- .postcontent end -->
+
+
+						<!-- Sidebar
+                    ============================================= -->
+						<div class="sidebar col-lg-3">
+							<div class="sidebar-widgets-wrap">
+
+								<div class="widget widget-filter-links">
+
+									<h4>Categories</h4>
+									<ul class="custom-filter ps-2" data-container="#shop"
+										data-active-class="active-filter">
+										<li class="widget-filter-reset active-filter"><a href="#"
+												data-filter="*">Clear</a></li>
+										<li><a id="filter_dresses" href="#" data-filter=".sf-dresses">Dress</a>
+										</li>
+										<li><a id="filter_tops" href="#" data-filter=".sf-tops">Tops</a></li>
+										<li><a id="filter_jeans" href="#" data-filter=".sf-jeans">Jeans</a></li>
+										<li><a id="filter_pants" href="#" data-filter=".sf-pants">Pants</a></li>
+										<li><a id="filter_skirts" href="#" data-filter=".sf-skirts">Skirts</a>
+										</li>
+									</ul>
+
+								</div>
+
+								<div class="widget widget-filter-links">
+
+									<h4>Sort By</h4>
+									<ul class="shop-sorting ps-2">
+										<li class="widget-filter-reset active-filter"><a href="#"
+												data-sort-by="original-order">Clear</a></li>
+										<li><a href="#" data-sort-by="name">Name</a></li>
+										<li><a href="#" data-sort-by="price_lh">Price: Low to High</a></li>
+										<li><a href="#" data-sort-by="price_hl">Price: High to Low</a></li>
+									</ul>
+
+								</div>
+
+								<div class="widget clearfix">
+
+									<h4>Recent Items</h4>
+									<div class="posts-sm row col-mb-30" id="recent-shop-list-sidebar">
+										<% recent_list.forEach(item=> { %>
+											<div class="entry col-12">
+												<div class="grid-inner row g-0">
+													<div class="col-auto">
+														<div class="entry-image">
+															<div class="sidebar_product_id" style="display: none">
+																<%= item._id %>
+															</div>
+															<a href="/small-shop-item?product_id=<%= item._id %>"
+																data-lightbox="ajax">
+																<img src="<%= item.product_image.split(',').slice(0, 1) %>"
+																	alt="Image">
+															</a>
+														</div>
+													</div>
+													<div class="col ps-3">
+														<div class="entry-title">
+															<h4><a href="/small-shop-item?product_id=<%= item._id %>"
+																	data-lightbox="ajax">
+																	<%= item.product_name %>
+																</a></h4>
+														</div>
+														<div class="entry-meta no-separator">
+															<ul>
+																<li class="color">$<%= item.sale_price %>
+																</li>
+																<li><i class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star-half-full"></i></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<% }); %>
+									</div>
+
+
+								</div>
+
+
+								<div class="widget clearfix">
+
+									<h4>Popular Items</h4>
+									<div class="posts-sm row col-mb-30" id="popular-shop-list-sidebar">
+										<% popular_product_list.forEach(item=> { %>
+											<div class="entry col-12">
+												<div class="grid-inner row g-0">
+													<div class="col-auto">
+														<div class="entry-image">
+															<div class="sidebar_product_id" style="display: none">
+																<%= item._id %>
+															</div>
+															<a href="/small-shop-item?product_id=<%= item._id %>"
+																data-lightbox="ajax">
+																<img src="<%= item.product_image.split(',').slice(0, 1) %>"
+																	alt="Image">
+															</a>
+														</div>
+													</div>
+													<div class="col ps-3">
+														<div class="entry-title">
+															<h4>
+																<a href="/small-shop-item?product_id=<%= item._id %>"
+																	data-lightbox="ajax">
+																	<%= item.product_name %>
+																</a>
+															</h4>
+														</div>
+														<div class="entry-meta no-separator">
+															<ul>
+																<li class="color">$<%= item.sale_price%>
+																</li>
+																<li><i class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star3"></i><i
+																		class="icon-star-half-full"></i></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<% }); %>
+									</div>
+
+
+								</div>
+
+
+								<div class="widget clearfix">
+
+									<div id="oc-clients-full" class="owl-carousel image-carousel carousel-widget"
+										data-items="1" data-margin="10" data-loop="true" data-nav="false"
+										data-autoplay="5000" data-pagi="false">
+
+										<div class="oc-item"><a href="#"><img
+													src="images/clients/brand_tommyhilfiger.jpg" alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_theory.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_levis.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_larkro.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_cross.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_core10.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_calvinklein.jpg"
+													alt="Clients"></a>
+										</div>
+										<div class="oc-item"><a href="#"><img src="images/clients/brand_adidas.jpg"
+													alt="Clients"></a>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div><!-- .sidebar end -->
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+
+							<span>Authors: </span>A <span class="middot">&middot;</span> B <span
+								class="middot">&middot;</span> C
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<a href="#" id="notifications-success" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="success" data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Edit Success!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-db-connection" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error"
+		data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Database connection error!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-unknown" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error" data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>unknown error</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script>
+
+		jQuery(document).ready(function ($) {
+			$(window).on('pluginIsotopeReady', function () {
+				$('#shop').isotope({
+					transitionDuration: '0.65s',
+					getSortData: {
+						name: '.product-title',
+						price_lh: function (itemElem) {
+							if ($(itemElem).find('.product-price').find('ins').length > 0) {
+								var price = $(itemElem).find('.product-price ins').text();
+							} else {
+								var price = $(itemElem).find('.product-price').text();
+							}
+
+							priceNum = price.split("$");
+
+							return parseFloat(priceNum[1]);
+						},
+						price_hl: function (itemElem) {
+							if ($(itemElem).find('.product-price').find('ins').length > 0) {
+								var price = $(itemElem).find('.product-price ins').text();
+							} else {
+								var price = $(itemElem).find('.product-price').text();
+							}
+
+							priceNum = price.split("$");
+
+							return parseFloat(priceNum[1]);
+						}
+					},
+					sortAscending: {
+						name: true,
+						price_lh: true,
+						price_hl: false
+					}
+				});
+
+				$('.custom-filter:not(.no-count)').children('li:not(.widget-filter-reset)').each(function () {
+					var element = $(this),
+						elementFilter = element.children('a').attr('data-filter'),
+						elementFilterContainer = element.parents('.custom-filter').attr('data-container');
+
+					elementFilterCount = Number(jQuery(elementFilterContainer).find(elementFilter).length);
+
+					element.append('<span>' + elementFilterCount + '</span>');
+
+				});
+
+				$('.shop-sorting li').click(function () {
+					$('.shop-sorting').find('li').removeClass('active-filter');
+					$(this).addClass('active-filter');
+					var sortByValue = $(this).find('a').attr('data-sort-by');
+					$('#shop').isotope({ sortBy: sortByValue });
+					return false;
+				});
+			});
+		});
+
+		function btn_add_cart(self) {
+			var parent = $(self).parent().parent().parent().next()
+			var div = parent.find(".text_product_id");
+			var product_id = div.text().replace(/\s+/g, '').trim();;
+			// var product_name = div.next().text();
+			// var original_price = div.next().next().find("del").text();
+			var sale_price = div.next().next().find("ins").text().trim();
+
+			var data = {
+				'product_id': product_id,
+				'sale_price': sale_price,
+				'request_type': 'add_cart'
+			}
+			console.log('add cart data:', data)
+			// --post--
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/shop/add-cart",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Already add to cart!</strong')
+						$("#notifications-success").click();
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			})
+		}
+
+		// discarded
+		function btn_small_shop_item(self) {
+			var parent = $(self).parent().parent().parent().parent()
+			var div = parent.find(".text_product_id");
+			var product_id = div.text().replace(/\s+/g, '').trim();;
+
+
+			var data = {
+				'product_id': product_id,
+				'request_type': 'shop_small_item'
+			}
+			// --post--
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/shop/small-item",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						console.log('success')
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			})
+		}
+
+		// discarded
+		function btn_sidebar_small_shop_item(self) {
+			var parent = $(self).parent().parent().parent().parent();
+			var product_id = parent.find(".sidebar_product_id").text();
+			console.log(product_id)
+			var data = {
+				'product_id': product_id,
+				'request_type': 'shop_small_item'
+			}
+			// --post--
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/shop/small-item",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						console.log('success')
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			})
+		}
+
+		function btnsubmit(self) {
+			var parent = $(self).parent().parent();
+			var product_id = parent.find('.sku').attr('val').trim();
+			var quantity = parent.find('.qty').val()
+			var sale_price = parent.find("ins").attr('val').trim();
+
+			var data = {
+				'product_id': product_id,
+				'quantity': quantity,
+				'sale_price': sale_price,
+				'request_type': 'add_cart_small_shop_item'
+			}
+			console.log(data)
+			// --post--
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/shop/add_cart_small_shop",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Already add to cart!</strong')
+						$("#notifications-success").click();
+						$(".mfp-close").click()
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			})
+
+		}
+
+
+		window.onload = function () {
+			var type = $('#querytype').attr('val').trim();
+			time = 1000;
+			console.log(type);
+			if (type == 'dresses') {
+				setTimeout(function () {
+					$("#filter_dresses").click();
+				}, time)
+			}
+			else if (type == 'tops') {
+				setTimeout(function () {
+					$("#filter_tops").click();
+				}, time)
+			}
+			else if (type == 'jeans') {
+				setTimeout(function () {
+					$("#filter_jeans").click();
+				}, time)
+			}
+			else if (type == 'pants') {
+				setTimeout(function () {
+					$("#filter_pants").click();
+				}, time)
+			}
+			else if (type == 'skirts') {
+				setTimeout(function () {
+					$("#filter_skirts").click();
+				}, time)
+			}
+		}
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		function header_dresses_fun() {
+			window.location.href = "/shop?type=dresses";
+		}
+
+		function header_tops_fun() {
+			window.location.href = "/shop?type=tops";
+		}
+		function header_jeans_fun() {
+			window.location.href = "/shop?type=jeans";
+		}
+		function header_pants_fun() {
+			window.location.href = "/shop?type=pants";
+		}
+		function header_skirts_fun() {
+			window.location.href = "/shop?type=skirts";
+		}
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style>
+		.form-group label {
+			cursor: text;
+		}
+	</style>
+
+	<title>Login and Register</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_dresses_fun(this)" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_tops_fun(this)" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_jeans_fun(this)" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_pants_fun(this)" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_skirts_fun(this)" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="/cart">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> 
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;">
+
+
+						<div class="tab-container">
+
+							<div class="tab-content" id="tab-login">
+								<div class="card mb-0">
+									<div class="card-body" style="padding: 40px 40px 20px;">
+										<form id="login-form" name="login-form" class="mb-0" action="#" method="post">
+
+											<h3>Login to your Manager Account</h3>
+											<!-- 
+											<div class="col-12 form-group">
+												<label>You are:</label><br>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input required" type="radio"
+														name="manager-usertype" id="manager-usertype-salesperson"
+														value="salesperson">
+													<label class="form-check-label nott ms-2"
+														for="manager-usertype-salesperson">Salesperson</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="manager-usertype"
+														id="manager-usertype-manager" value="manager">
+													<label class="form-check-label nott ms-2"
+														for="manager-usertype-manager">Manager</label>
+												</div>
+											</div> -->
+
+											<div class="row">
+												<div class="col-12 form-group">
+													<label for="login-form-username">Manager Name:</label>
+													<input type="text" id="login-form-username"
+														name="login-form-username" value="" class="form-control" />
+												</div>
+												<div class="col-12 form-group">
+													<label for="login-form-username">Password:</label>
+													<input type="password" id="login-form-password"
+														name="login-form-password" value="" class="form-control" />
+												</div>
+
+												<div class="col-12 form-group mt-3">
+													<button type="button" class="button button-3d button-black m-0"
+														id="login-form-submit" name="login-register-form-submit"
+														value="login">Login</button>
+													<a href="#" class="float-end">Forgot Password?</a>
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+
+							<!--notifications-->
+							<a href="#" id="notifications-wrong-login-wrong-pwd" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Wrong password!</strong><br />Please try again!"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-success-login" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="success"
+								data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Login successfully!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-register-duplicate-name" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>The username has been used!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-success-register" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="success"
+								data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Register successfully!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-username-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Wrong username format</strong><br />Only supports numbers and letters"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-pwd-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Wrong password format</strong><br />Only supports numbers, letters and special symbols"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-email-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Wrong email format</strong><br />Please check and try again"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-ERROR-UNKNOWN" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Unknown error occurred</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-pwd-not-equal" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Password does not equal</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-register-duplicate-email" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>The email has been used!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+								<a href="#" id="notifications-wrong-no-such-user" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>User doesn not exist</strong><br />Please check and try again"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+
+							<span>Authors: </span>A <span class="middot">&middot;</span> B <span
+								class="middot">&middot;</span> C
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		var cookies = {};
+
+		$('#login-form-submit').on('click',
+			function () {
+				// var usertype = $("input[name='manager-usertype']:checked").val();
+				var username = $("#login-form-username").val();
+				var password = $('#login-form-password').val();
+
+				var data = {
+					// 'usertype': usertype,
+					'username': username,
+					'password': password
+				}
+
+				var password_nospace = password.replace(/\s+/g, '');
+				console.log(username, password_nospace.length, password.length);
+				if (password_nospace.length !== password.length) {
+					$("#notifications-wrong-pwd-format").click();
+					return;
+				}
+
+				// --post--
+				$.ajax({
+					type: "POST",
+					dataType: "json",
+					contentType: "application/json",
+					url: "/login-manager",
+					data: JSON.stringify(data),
+					success: function (result) {
+						if (result.message === 'login_success') {
+							$("#notifications-success-login").click();
+							// setTimeout(function () {
+							// 	if (usertype == 'salesperson') {
+							// 		window.location.href = "/order_management?username=" + username
+							// 	}
+							// 	else {
+							// 		window.location.href = "/management?username=" + username
+							// 	}
+							// }, 1500)
+
+							setTimeout(function () {
+								window.location.href = "/management?username=" + username
+							}, 1500)
+						}
+						else if (result.message === 'login_fail') {
+							$("#notifications-wrong-login-wrong-pwd").click();
+						} else {
+							$("#notifications-wrong-no-such-user").click();
+						}
+
+					},
+					error: function (result) {
+						$("#notifications-ERROR-UNKNOWN").click();
+					}
+				})
+
+			})
+
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		function header_dresses_fun() {
+			window.location.href = "/shop?type=dresses";
+		}
+
+		function header_tops_fun() {
+			window.location.href = "/shop?type=tops";
+		}
+		function header_jeans_fun() {
+			window.location.href = "/shop?type=jeans";
+		}
+		function header_pants_fun() {
+			window.location.href = "/shop?type=pants";
+		}
+		function header_skirts_fun() {
+			window.location.href = "/shop?type=skirts";
+		}
+	</script>
+
+</body>
+
+</html>

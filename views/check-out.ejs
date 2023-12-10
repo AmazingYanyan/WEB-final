@@ -1,0 +1,486 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style>
+		.fbox-content p {
+			line-height: 0.8 !important;
+			color: black;
+			padding-left: 10px;
+		}
+
+		#btn_place_order:hover {
+			background-color: #24a88e;
+			font-size: 1.05em;
+			transform: scale(1.01);
+		}
+	</style>
+	<title>Check Out</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_dresses_fun(this)" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_tops_fun(this)" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_jeans_fun(this)" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_pants_fun(this)" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_skirts_fun(this)" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="/cart">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> 
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="row col-mb-50 gutter-50">
+
+						<div class="w-100"></div>
+
+						<div class="col-lg-6">
+							<h4>Check Your Order</h4>
+
+							<div class="table-responsive">
+								<table class="table cart username-container checkout-table" id="<%= username %>">
+									<thead style="font-size: 1.05em;">
+										<tr>
+											<th class="cart-product-thumbnail">&nbsp;</th>
+											<th class="cart-product-name">Product</th>
+											<th class="cart-product-quantity">Quantity</th>
+											<th class="cart-product-subtotal">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% item_list.forEach(item=> { %>
+											<tr class="cart_item" id="<%= item._id %>">
+												<td class="cart-product-thumbnail">
+													<a style="cursor: default;" href="#"><img width="64" height="64"
+															src="<%= item.cart_image %>" alt="loading"></a>
+												</td>
+												<td class="cart-product-name">
+													<a style="cursor: default;" href="#">
+														<%= item.product_name %>
+													</a>
+												</td>
+												<td class="cart-product-quantity">
+													<div class="quantity clearfix">
+														<%= item.quantity %>
+													</div>
+												</td>
+												<td class="cart-product-subtotal">
+													<span class="amount">$<%= item.total_price %></span>
+												</td>
+											</tr>
+											<% }); %>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+						<div class="col-lg-6">
+							<h4>Order Detals</h4>
+
+							<div class="table-responsive">
+								<table class="table cart">
+									<tbody>
+										<tr class="cart_item">
+											<td class="border-top-0 cart-product-name">
+												<strong>Order Subtotal</strong>
+											</td>
+
+											<td class="border-top-0 cart-product-name">
+												<% if (cart_subtotal_original !=cart_subtotal){ %>
+													<del style="color: #aaa; font-size: 0.9em;"><span class="amount"
+															val="<%= cart_subtotal_original %>">$<%=
+																cart_subtotal_original %></span></del>
+													<% }%>
+														<span class="amount" id="checkout_total_price">$<%=
+																cart_subtotal %>
+														</span>
+											</td>
+										</tr>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Shipping</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span class="amount">Free Delivery</span>
+											</td>
+										</tr>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Saving</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span class="amount">$<%= cart_saving %></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+
+							<div class="feature-box fbox-effect flex-column border p-2 rounded-3" style="margin: 15px">
+								<div class="fbox-content">
+									<table class="table address-id-container" id="<%= address_result._id %>">
+										<thead>
+											<tr>
+												<th class="cart-product-thumbnail">Shipping Address</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="cart_item">
+												<td class="cart-product-thumbnail">
+													<p style="font-weight: 600!important; margin-top: 10px">
+														<%= address_result.customer_realname %>
+													</p>
+													<p>
+														<%= address_result.street %>
+													</p>
+													<p>
+														<%= address_result.city %>
+													</p>
+													<p>
+														<%= address_result.state %>
+													</p>
+													<p>
+														<%= address_result.phone_number %>
+													</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="col-12">
+										<a href="#" rel="tag" class="edit_address" onclick="edit_address(this)">Edit</a>
+										<span style="margin-left: 10px;margin-right: 10px">|</span>
+										<a href="/add-address?username=<%= username %>" class="button_to_add_address"
+											rel="tag">Add Address</a>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="accordion clearfix">
+								<div class="accordion-header">
+									<div class="accordion-icon">
+										<i class="accordion-closed icon-line-minus"></i>
+										<i class="accordion-open icon-line-check"></i>
+									</div>
+									<div class="accordion-title">
+										Visa
+									</div>
+								</div>
+								<div class="accordion-content clearfix">
+									<div class="form-group">
+										<div style="margin-bottom: 1em;">Please enter your 16-digit deposit/credit card
+											number</div>
+										<input type="text" class="form-control" id="checkout_card_number"
+											placeholder="xxxx-xxxx-xxxx-xxxx">
+									</div>
+								</div>
+
+								<div class="accordion-header">
+									<div class="accordion-icon">
+										<i class="accordion-closed icon-line-minus"></i>
+										<i class="accordion-open icon-line-check"></i>
+									</div>
+									<div class="accordion-title">
+										Apple Pay
+									</div>
+								</div>
+								<div class="accordion-content clearfix">
+									<div class="form-group">
+										<div style="margin-bottom: 1em;">Please enter your phone number</div>
+										<input type="text" class="form-control" id="checkout_cheque_number"
+											placeholder="(xxx)xxxxxxx">
+									</div>
+								</div>
+
+								<div class="accordion-header">
+									<div class="accordion-icon">
+										<i class="accordion-closed icon-line-minus"></i>
+										<i class="accordion-open icon-line-check"></i>
+									</div>
+									<div class="accordion-title">
+										Paypal
+									</div>
+								</div>
+								<div class="accordion-content clearfix">
+									<div class="form-group">
+										<div style="margin-bottom: 1em;">Please enter your Paypal phone or Email account
+										</div>
+										<input type="text" class="form-control" id="checkout_paypal_number"
+											placeholder="(xxx)xxxxxxx OR xxx@mail.com">
+									</div>
+								</div>
+							</div>
+							<a id="btn_place_order" href="/order?username=<%=username%>"
+								class="button button-3d float-end" onclick="place_order()">Place
+								Order</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-5 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-8 text-center text-md-end">
+
+							<span>Authors: </span>A <span class="middot">&middot;</span> B <span
+								class="middot">&middot;</span> C
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+		<a href="#" id="notifications-temp-success-delete-product" style="display: block"
+			data-notify-position="bottom-center" data-notify-type="success"
+			data-notify-msg="<i class='icon-ok-sign me-1'></i> Order has been placed!"
+			onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+	<a href="#" id="notifications-success" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="success" data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Edit Success!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-db-connection" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error"
+		data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Database connection error!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-unknown" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error" data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>unknown error</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script>
+		function place_order() {
+
+			let product_id = []
+			let quantity = []
+			let table = $(".checkout-table");
+			table.children("tbody").children("tr").each(function () {
+				product_id.push($(this).attr("id"));
+				quantity.push(parseInt($(this).children(".cart-product-quantity").children().html()));
+			})
+			console.log(product_id);
+			console.log(quantity);
+			let username = $(".username-container").attr("id");
+			console.log(username);
+			let address_id = $(".address-id-container").attr("id");
+			console.log(address_id);
+			let total_price = parseFloat($("#checkout_total_price").html().split('$')[1]).toFixed(1);
+			console.log(total_price);
+
+			let checkout_card_number = $("#checkout_card_number").val();
+			let checkout_cheque_number = $("#checkout_cheque_number").val();
+			let checkout_paypal_number = $("#checkout_paypal_number").val();
+			let payment_method;
+			if (checkout_card_number.length !== 0) {
+				payment_method = "Visa";
+			} else if (checkout_cheque_number.length !== 0) {
+				payment_method = "Apple Pay";
+			} else if (checkout_paypal_number.length !== 0) {
+				payment_method = "Paypal";
+			} else {
+				payment_method = "visa";
+			};
+
+			var data = {
+				'username': username,
+				'product_id_list': product_id,
+				'quantity_list': quantity,
+				'address_id': address_id,
+				'payment': payment_method,
+				'total_price': total_price,
+				'request_type': 'sql_place_order'
+			};
+			console.log('data---',data);
+			// --post--
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/check-out",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result.code !== 200) {
+						$("#notifications-ERROR-db-connection").click();
+					} else {
+						window.location.reload;
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			});
+		}
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		function header_dresses_fun() {
+			window.location.href = "/shop?type=dresses";
+		}
+
+		function header_tops_fun() {
+			window.location.href = "/shop?type=tops";
+		}
+		function header_jeans_fun() {
+			window.location.href = "/shop?type=jeans";
+		}
+		function header_pants_fun() {
+			window.location.href = "/shop?type=pants";
+		}
+		function header_skirts_fun() {
+			window.location.href = "/shop?type=skirts";
+		}
+
+	</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,615 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>ShopItem</title>
+
+	<style>
+		.quantity .btn_plus,
+		.quantity .btn_minus {
+			display: block;
+			cursor: pointer;
+			border: 0px transparent;
+			padding: 0;
+			width: 36px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			background-color: #EEE;
+			font-size: 1rem;
+			font-weight: bold;
+			transition: background-color .2s linear;
+			-webkit-transition: background-color .2s linear;
+			-o-transition: background-color .2s linear;
+		}
+
+		.btn_plus:hover,
+		.btn_minus:hover {
+			background-color: rgb(210, 210, 210);
+			font-size: 1.1em;
+			transform: scale(1.02);
+		}
+
+		#submit:hover {
+			background-color: #24a88e;
+			font-size: 1.05em;
+			transform: scale(1.01);
+		}
+	</style>
+
+</head>
+
+<body class="stretched">
+
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_dresses_fun(this)" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_tops_fun(this)" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_jeans_fun(this)" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_pants_fun(this)" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_skirts_fun(this)" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="/cart">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> 
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="col-12">
+						<h3>Shopping Cart</h3>
+					</div>
+					<table class="table cart mb-5 username-container" id="<%= username %>">
+						<thead style="font-size: 1.1em;">
+							<tr>
+								<th class="cart-product-remove">
+									<label class="list-group-item mb-0 nott fw-normal ls0 text-size-sm font-body">
+										<input style="font-size: 1.1em;" class="form-check-input me-1" type="checkbox"
+											value="" aria-label="..." id="select_all" checked>
+										Select all
+									</label>
+								</th>
+								<th class="cart-product-thumbnail">&nbsp;</th>
+								<th class="cart-product-thumbnail">&nbsp;</th>
+								<!-- <th class="cart-product-name">Product</th> -->
+								<th class="cart-product-price">Unit Price</th>
+								<th class="cart-product-quantity">Quantity</th>
+								<th class="cart-product-subtotal">Total</th>
+								<th class="cart-product-thumbnail">&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% item_list.forEach(item=> { %>
+								<tr class="cart_item" id="<%= item._id %>">
+									<td class="cart-product-remove product_id_container">
+										<a class="list-group-item mb-0 nott fw-normal ls0 text-size-sm font-body">
+											<input class="form-check-input me-1 select_product" type="checkbox" value=""
+												aria-label="..." checked>
+											<span style="font-size: 1.05em; font-weight: bold; margin-left: 1em;">
+												<%= item.product_name %>
+											</span>
+										</a>
+									</td>
+									<td class="cart-product-thumbnail" colspan="2"><img src="<%= item.cart_image %>"
+											alt="product image">
+									</td>
+									<!-- <td class="cart-product-name">
+										<a style="cursor: default;" href="#">
+											<%= item.product_name %>
+										</a>
+									</td> -->
+									<td class="cart-product-price">
+										<% if (item.original_price !=item.sale_price){ %>
+											<del style="color: #aaa; font-size: 0.9em;"><span class="amount">$<%=
+														item.original_price %></span></del>
+											<% }%>
+												<span class="amount">$<%= item.sale_price %></span>
+									</td>
+									<td class="cart-product-quantity">
+										<div class="quantity">
+											<input onclick="minus_func(this)" type="button" value="-" class="btn_minus">
+											<input type="text" class="quantity-minus-plus qty" name="quantity"
+												value="<%= item.quantity %>" readonly />
+											<input onclick="plus_func(this)" type="button" value="+" class="btn_plus">
+										</div>
+									</td>
+									<td class="cart-product-subtotal" id="product-price">
+										<% if (item.total_price_original !=item.total_price){ %>
+											<del style="color: #aaa; font-size: 0.9em;"><span class="amount"
+													val="<%= item.total_price_original %>">$<%=
+														item.total_price_original %></span></del>
+											<% }%>
+												<span class="amount" val="<%= item.total_price %>">
+													$<%= item.total_price %>
+												</span>
+									</td>
+									<td>
+										<a class="button button-border button-rounded button-red"
+											style="padding: 5px;border-width: 0" onclick="delete_cart_product(this)"><i
+												class="icon-line-trash-2 border-width-1"
+												style="margin-right: 0"></i></a>
+									</td>
+								</tr>
+								<% }); %>
+						</tbody>
+					</table>
+
+
+					<div class="row col-mb-30">
+
+						<div class="col-lg-8">
+							<h4>Cart Totals:</h4>
+
+							<div class="table-responsive">
+								<table class="table cart cart-totals">
+									<tbody>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Cart Subtotal</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<del style="color: #aaa; font-size: 0.9em;"><span
+														id="cart-subtotal-original" class="amount"></span></del>
+												<span class="amount" id="cart-subtotal">
+													<%= cart_subtotal %>
+												</span>
+											</td>
+										</tr>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Shipping</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span class="amount">Free Delivery</span>
+											</td>
+										</tr>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Saving</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span id="savingamount" class="amount">$0</span>
+											</td>
+										</tr>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+
+						<tr class="cart_item">
+							<td colspan="6">
+								<div class="row justify-content-between py-2 col-mb-30">
+									<div class="col-lg-auto ps-lg-0">
+										<div class="row">
+											<div class="col-md-8">
+												<input type="text" value=""
+													class="sm-form-control text-center text-md-start"
+													placeholder="Enter Coupon Code.." />
+											</div>
+											<div class="col-md-4 mt-3 mt-md-0">
+												<a id="btn_coupon" href="#"
+													class="button button-3d button-black m-0">Apply Coupon</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-auto pe-lg-0">
+										<a id="submit" onclick="submitbtn(this)" class="button button-3d mt-2 mt-s m-0"
+											type="submit">Proceed to Checkout</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-5 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-8 text-center text-md-end">
+
+							<span>Authors: </span>A<span class="middot">&middot;</span> B<span
+								class="middot">&middot;</span> C<span class="middot">&middot;</span> D
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		$("#button button-3d mt-2 mt-sm-0 me-0").click(function () {
+
+			var data = {
+				'request_type': 'update_products',
+			}
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/cart",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result.code === 200) {
+						cookies['cart_idprice'] = result['cart_idprice'];
+						cookies['item_list'] = result['item_list'];
+						// console.log(cookies);
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-db-connection").click();
+				}
+			})
+		})
+	</script>
+
+	<script>
+		// select all
+		$('#select_all').click(function () {
+			$('input:checkbox').not(this).prop('checked', this.checked);
+		});
+
+		// subtotal price
+		$('input:checkbox').on('click', update_total_price);
+
+		function update_total_price() {
+			let total_price = 0;
+			let total_price_original = 0;
+			let checked = $("input[type=checkbox]:checked");
+			checked.each(function () {
+				let row = $(this).parent("a").parent("td").parent("tr");
+				let price = row.find("[id='product-price']").children("span").attr('val');
+				if (price != undefined) {
+					price = parseFloat(price);
+					total_price += price;
+				}
+				if (row.find("[id='product-price']").children("del").length > 0) {
+					let original_price = row.find("[id='product-price']").children("del").children("span").first().attr('val');
+
+					if (original_price != undefined && original_price.length > 0) {
+						original_price = original_price.replace(/[^\d.]/g, "");
+						original_price = parseFloat(original_price);
+						if (!isNaN(original_price)) {
+							total_price_original += original_price;
+						}
+					}
+				} else if (!isNaN(price)) {
+					total_price_original += price;
+				}
+			});
+			total_price = Math.round(total_price * 10) / 10;
+			total_price_original = Math.round(total_price_original * 10) / 10;
+			let savingamount = Math.round((total_price_original - total_price) * 10) / 10;
+			$("#cart-subtotal").html('$' + total_price);
+			if (total_price_original != total_price) {
+				$("#cart-subtotal-original").html('$' + total_price_original);
+				$("#savingamount").html('$' + savingamount);
+			} else {
+				$("#cart-subtotal-original").html('');
+				$("#savingamount").html('$0');
+			}
+
+		}
+
+		// quantity
+		// minus plus quantity-minus-plus
+
+		let lock_minus = 0;
+		function minus_func(self) {
+			var quantity = $(self).parent().find(".quantity-minus-plus").val();
+			quantity = parseInt(quantity) - 1;
+			$(self).parent().find(".quantity-minus-plus").val(quantity);
+			if (lock_minus == 0) {
+				lock_minus = 1;
+				setTimeout(function () {
+					quantity = $(self).parent().find(".quantity-minus-plus").val();
+					lock_minus = 0;
+					// console.log(quantity);
+
+					let row = $(self).parent().parent().parent();
+					let product_id = row.attr("id").toString().replace('\t', '').replace('\n', '');
+					console.log('product_id', product_id);
+					let username = $(".username-container").attr("id");
+					let cart_subtotal = $("#cart-subtotal").html();
+					let data = {
+						'username': username,
+						'product_id': product_id,
+						'quantity': quantity,
+						'cart_subtotal': cart_subtotal,
+						'request_type': 'sql_update_quantity'
+					};
+					// --post--
+					$.ajax({
+						type: "PUT",
+						dataType: "json",
+						contentType: "application/json",
+						url: "/cart/update-item",
+						data: JSON.stringify(data),
+						success: function (result) {
+							if (result.code !== 200) {
+								$("#notifications-ERROR-db-connection").click();
+							} else {
+								window.location.reload();
+								// todo: use a function to update product_total_price and Total_price, rather than refresh the page
+							}
+						},
+						error: function (result) {
+							$("#notifications-ERROR-unknown").click();
+						}
+					});
+				}, 700)
+			}
+		}
+
+		let lock_plus = 0;
+		function plus_func(self) {
+			var quantity = $(self).parent().find(".quantity-minus-plus").val();
+			quantity = parseInt(quantity) + 1
+			$(self).parent().find(".quantity-minus-plus").val(quantity);
+			if (lock_plus == 0) {
+				lock_plus = 1;
+				setTimeout(function () {
+					quantity = $(self).parent().find(".quantity-minus-plus").val();
+					lock_plus = 0;
+					// console.log(quantity);
+
+					let row = $(self).parent().parent().parent();
+					let product_id = row.attr("id").toString().replace('\t', '').replace('\n', '');
+					console.log('product_id', product_id);
+					let username = $(".username-container").attr("id");
+					let cart_subtotal = parseFloat($("#cart-subtotal").html());
+					let data = {
+						'username': username,
+						'product_id': product_id,
+						'quantity': quantity,
+						'cart_subtotal': cart_subtotal,
+						'request_type': 'sql_update_quantity'
+					};
+					// --post--
+					$.ajax({
+						type: "PUT",
+						dataType: "json",
+						contentType: "application/json",
+						url: "/cart/update-item",
+						data: JSON.stringify(data),
+						success: function (result) {
+							if (result.code !== 200) {
+								$("#notifications-ERROR-db-connection").click();
+							} else {
+								window.location.reload();
+								// todo: use a function to update product_total_price and Total_price, rather than refresh the page
+							}
+						},
+						error: function (result) {
+							$("#notifications-ERROR-unknown").click();
+						}
+					});
+				}, 700)
+			}
+		}
+
+		function delete_cart_product(self) {
+			let product_id = $(self).parent().parent().attr("id");
+			let username = $(".username-container").attr("id");
+			let data = {
+				'username': username,
+				'product_id': product_id,
+				'request_type': 'sql_delete_cart_product'
+			};
+
+			$.ajax({
+				type: "DELETE",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/cart/del-item",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result.code !== 200) {
+						$("#notifications-ERROR-db-connection").click();
+					} else {
+						window.location.reload();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			});
+		}
+
+		function submitbtn(self) {
+			let username = $(".username-container").attr("id");
+			let id_list = [];
+			$("input[type=checkbox]:checked").each(function () {
+				let product_id = $(this).closest("tr").attr('id');
+				if (product_id){
+					product_id = product_id.trim();
+					id_list.push(product_id);
+				}
+			});
+			let queryString = id_list.map(id => `id_list=${encodeURIComponent(id)}`).join('&');
+			window.location.href = "/check-out?username=" + encodeURIComponent(username) + "&" + queryString;
+		}
+
+
+
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		function header_dresses_fun() {
+			window.location.href = "/shop?type=dresses";
+		}
+
+		function header_tops_fun() {
+			window.location.href = "/shop?type=tops";
+		}
+		function header_jeans_fun() {
+			window.location.href = "/shop?type=jeans";
+		}
+		function header_pants_fun() {
+			window.location.href = "/shop?type=pants";
+		}
+		function header_skirts_fun() {
+			window.location.href = "/shop?type=skirts";
+		}
+
+		update_total_price();
+	</script>
+
+
+</body>
+
+</html>

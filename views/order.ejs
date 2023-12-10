@@ -1,0 +1,497 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>Order</title>
+
+	<style>
+		.dark #copyrights,
+		#copyrights.dark {
+			background-color: rgb(32, 32, 32) !important;
+		}
+
+		.col-md-4 .button-3d,
+		.btn-details {
+			box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%) !important;
+			text-decoration: none !important;
+			text-transform: none !important;
+			border-radius: 13px !important;
+			text-align: center !important;
+			color: #0F1111;
+			font-size: 14px;
+			margin-right: 0;
+			width: 90%;
+			letter-spacing: 0.5px !important;
+			line-height: 28px !important;
+			font-weight: 300;
+		}
+
+		.col-md-4 .button-bottom:hover {
+			background: rgb(247, 250, 250) !important;
+		}
+
+		.col-md-4 .button-top:hover {
+			background: rgb(225, 184, 0) !important;
+		}
+
+		.col-md-12 .button-white {
+			box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%) !important;
+			border-radius: 13px !important;
+			text-transform: none !important;
+			font-size: 12px !important;
+			letter-spacing: 0.5px !important;
+			line-height: 22px !important;
+			border-color: #D5D9D9 !important;
+			border-style: solid;
+			margin-left: 0;
+			margin-top: 16px;
+			border-width: 1px
+		}
+
+		.line {
+			margin: 1rem 0;
+			border-top: 1px solid #d5d9d9;
+		}
+
+		.card {
+			margin-top: 30px !important;
+		}
+
+		.btn-details:hover {
+			background-color: rgb(224, 194, 39) !important;
+			font-weight: bold;
+			transform: scale(1.05);
+		}
+
+		.btn-return:hover,
+		.btn-change-address:hover {
+			background-color: rgb(224, 224, 224);
+			font-weight: bold;
+			transform: scale(1.05);
+		}
+
+		.del-order:hover {
+			color: rgba(230, 0, 0, 0.85);
+			font-weight: bold;
+		}
+
+		.hidden {
+			display: none;
+		}
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div class="header-misc">
+
+							<!-- Top Search
+                        ============================================= -->
+							<!-- <div id="top-search" class="header-misc-icon">
+								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+										class="icon-line-cross"></i></a>
+							</div> -->
+							<!-- #top-search end -->
+
+						</div>
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a id="header_dresses" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a id="header_tops" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a id="header_jeans" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a id="header_pants" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a id="header_skirts" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="#">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> 
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="col-12">
+						<h3>Your Orders</h3>
+					</div>
+					<% item_list.forEach(item=> { %>
+						<div class="card">
+							<!-- Default panel contents -->
+							<div class="card-header">
+								<div class="row" style="padding-top: 8px;padding-bottom: 8px">
+									<div class="col-md-2"
+										style="margin-top: auto;margin-bottom: auto;padding-left: 20px">
+										<h5 style="margin-top: auto;margin-bottom: auto">ORDER PLACED</h5>
+										<%= item.formattedCreatedAt %>
+									</div>
+									<div class="col-md-1" style="margin-top: auto;margin-bottom: auto">
+										<h5 style="margin-top: auto;margin-bottom: auto">TOTAL</h5>
+										$<%= item.total_price %>
+									</div>
+									<div class="col-md-1" style="margin-top: auto;margin-bottom: auto">
+										<h5 style="margin-top: auto;margin-bottom: auto">SHIP TO</h5>
+										<a style="cursor: default;" href="#">
+											<%= item.customer_name %>
+										</a>
+									</div>
+									<div class="col-md-8"
+										style="text-align:right;margin-top: auto;margin-bottom: auto;padding-right: 20px">
+
+										<div class="row">
+											<h5 class="orderid" val="<%=
+											item._id %>" style="margin-top: auto;margin-bottom: auto">ORDER # <%= item._id %>
+											</h5>
+										</div>
+										<div class="row">
+											<div class="col-md-5  text-center order_status" val="<%= item.order_status %>">
+												<% if(item.order_status=="ordered"){ %>
+												<span style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+													-- SHIPPING...
+												</span>
+												<% } %>
+												<% if(item.order_status=="ordered"){ %>
+												<span style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+													-- RETURNED...
+												</span>
+												<% } %>
+											</div>
+											<div class="col-md-7">
+												<a onclick="btn_detail(this)"
+													class="button button-3d button-large button-rounded button-top btn-details"
+													style="background: rgb(255 216 20)!important;">View order
+													details</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="main_part hidden">
+									<% item.product_list.forEach(product=> { %>
+										<div class="row">
+
+											<div class="col-md-8" style="padding-left: 20px">
+												<div class="col-md-12">
+													<h4 style="margin-top: auto;margin-bottom: auto">Arriving At: <%=
+															item.formattedArrivingAt %>
+													</h4>
+												</div>
+												<div class="row" style="padding-top: 20px">
+													<div class="row col-md-3">
+														<img src="<%= product.product_image %>"
+															style="width: 120px;height: 120px;margin-left: auto;margin-right: auto">
+													</div>
+													<div class="col-md-9">
+														<div class="col-md-12">
+															<a class="pro_id" val="<%= product.product_id %>"
+																style="display: none">
+																<%= product.product_id %>
+															</a>
+															<a style="cursor: default; font-size: 1.1em;" href="#">
+																<%= product.product_name %>
+															</a>
+														</div>
+														<div class="col-md-12">
+															<!-- Item quantities and total price can be added here if needed -->
+														</div>
+														<div class="col-md-12">
+															<a href="#"
+																class="button button-rounded button-reveal button-large button-white button-light text-end"><i
+																	class="icon-line-arrow-right"></i><span>Buy it
+																	again</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="col-md-12" style="padding-top: 20px;">
+													<a onclick="btn_return(this)"
+														class="button button-3d button-large button-rounded button-bottom btn-return"
+														style="background:white; color: black; border-color: #D5D9D9!important;border-style: solid;border-width: 1px">return
+														items</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"
+														class="button button-3d button-large button-rounded button-bottom btn-change-address"
+														style="background:white; color: black;border-color: #D5D9D9!important;border-style: solid;border-width: 1px">Change
+														shipping address</a>
+												</div>
+											</div>
+										</div>
+										<div class="line"></div>
+										<% }); %>
+								</div>
+								<a style="cursor: pointer;" class="del-order" onclick="btn_del(this)"> Delete Order </a>
+							</div>
+						</div>
+						<% }); %>
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+	============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-5 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-8 text-center text-md-end">
+
+							<span>Authors: </span>A <span class="middot">&middot;</span> B <span
+								class="middot">&middot;</span> C
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+	<a href="#" id="notifications-success" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="success" data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Edit Success!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-db-connection" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error"
+		data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Database connection error!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-unknown" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error" data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>unknown error</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+	<script>
+
+		function btn_del(self) {
+			if (confirm("Are you sure you want to delete this order?")) {
+				let card = $(self).closest('.card');
+				let order_id = card.find('.orderid').attr('val').trim();
+				let product_id_list = [];
+				card.find('.pro_id').each(function () {
+					let product_id = $(this).attr('val').trim();
+					if (product_id) {
+						product_id_list.push(product_id);
+					}
+				});
+				var data = {
+					'order_id': order_id,
+					'product_id_list': product_id_list
+				};
+				$.ajax({
+					type: "DELETE",
+					dataType: "json",
+					url: "/order/delete-order",
+					contentType: "application/json",
+					data: JSON.stringify(data),
+					success: function (result) {
+						if (result.code === 200) {
+							$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Order Deleted Successfully!</strong')
+							$("#notifications-success").click();
+							card.remove();
+						}
+						else {
+							$("#notifications-ERROR-db-connection").click();
+						}
+					},
+					error: function (result) {
+						$("#notifications-ERROR-unknown").click();
+					}
+				});
+			}
+		}
+
+		function btn_detail(self) {
+			let card = $(self).closest('.card');
+			let card_main_part = card.find('.card-body .main_part');
+			let line = card.find('.card-body .line');
+			card_main_part.slideToggle();
+		}
+
+		function btn_return(self) {
+			var card = $(self).parent().parent().parent().parent().parent();
+			var order_id = card.find(".orderid").text();
+			var data = {
+				'order_id': order_id,
+				'request_type': 'return_order'
+			};
+			console.log(data);
+			// --post--
+			$.ajax({
+				type: "PUT",
+				dataType: "json",
+				url: "/order/return-order",
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result.code === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Order Has Been Returned!</strong')
+						$("#notifications-success").click();
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			});
+		}
+
+
+
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		$("#header_dresses").click(function () {
+			window.location.href = "/shop?username=Emma&type=dresses";
+		});
+		$("#header_tops").click(function () {
+			window.location.href = "/shop?username=Emma&type=tops";
+		});
+		$("#header_jeans").click(function () {
+			window.location.href = "/shop?username=Emma&type=jeans";
+		});
+		$("#header_pants").click(function () {
+			window.location.href = "/shop?username=Emma&type=pants";
+		});
+		$("#header_skirts").click(function () {
+			window.location.href = "/shop?username=Emma&type=skirts";
+		});
+
+	</script>
+
+</body>
+
+</html>

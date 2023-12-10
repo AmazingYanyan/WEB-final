@@ -1,0 +1,485 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style>
+		.form-group label {
+			cursor: text;
+		}
+	</style>
+
+	<title>Login and Register</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div onclick="header_home_fun(this)" id="logo">
+							<a class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- Primary Navigation
+                    ============================================= -->
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"> 
+									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
+										<div>Home</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_dresses_fun(this)" class="menu-link" href="#">
+										<div>Dresses</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_tops_fun(this)" class="menu-link" href="#">
+										<div>Tops</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_jeans_fun(this)" class="menu-link" href="#">
+										<div>Jeans</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_pants_fun(this)" class="menu-link" href="#">
+										<div>Pants</div>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a onclick="header_skirts_fun(this)" class="menu-link" href="#">
+										<div>Skirts</div>
+									</a>
+								</li>
+								<li class="menu-item"> 
+
+									<a class="menu-link" href="/cart">
+										<div>Account</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="/cart">
+												<div>Cart</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/add_address">
+												<div>Address</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="/order">
+												<div>Orders</div>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+						<form class="top-search-form" action="#" method="get"> 
+							<input type="text" name="q" class="form-control" value=""
+								placeholder="Search your favorites" autocomplete="off">
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;">
+
+						<ul class="tab-nav tab-nav2 center clearfix">
+							<li class="inline-block"><a id="headtab-login" onclick="headtab_login_onclick(this)"
+									href="#tab-login">Login</a></li>
+							<li class="inline-block"><a id="headtab-register" onclick="headtab_register_onclick(this)"
+									href="#tab-register">Register</a></li>
+						</ul>
+
+						<div class="tab-container">
+
+							<div class="tab-content" id="tab-login">
+								<div class="card mb-0">
+									<div class="card-body" style="padding: 40px 40px 20px;">
+										<form id="login-form" name="login-form" class="mb-0" action="#" method="post">
+
+											<h3>Login to your Account</h3>
+
+											<div class="row">
+												<div class="col-12 form-group">
+													<label for="login-form-username">Username:</label>
+													<input type="text" id="login-form-username"
+														name="login-form-username" value="" class="form-control" />
+												</div>
+												<div class="col-12 form-group">
+													<label for="login-form-username">Password:</label>
+													<input type="password" id="login-form-password"
+														name="login-form-password" value="" class="form-control" />
+												</div>
+
+												<div class="col-12 form-group mt-3">
+													<button type="button" class="button button-3d button-black m-0"
+														id="login-form-submit" name="login-register-form-submit"
+														value="login">Login</button>
+													<a href="#" class="float-end">Forgot Password?</a>
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-content" id="tab-register">
+								<div class="card mb-0">
+									<div class="card-body" style="padding: 40px 40px 20px;">
+										<h3>Register for an Account</h3>
+
+										<form id="register-form" name="register-form" class="row mb-0" action="#"
+											method="post">
+											<div class="col-12 form-group">
+												<label for="register-form-username">Username:</label>
+												<input type="text" id="register-form-username"
+													name="register-form-username" value="" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="register-form-email">Email Address:</label>
+												<input type="text" id="register-form-email" name="register-form-email"
+													value="" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="register-form-password">Password:</label>
+												<input type="password" id="register-form-password"
+													name="register-form-password" value="" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="register-form-repassword">Re-enter Password:</label>
+												<input type="password" id="register-form-repassword"
+													name="register-form-repassword" value="" class="form-control" />
+											</div>
+
+
+											<div class="col-12 form-group">
+												<button type="button" class="button button-3d button-black m-0"
+													id="register-form-submit" name="login-register-form-submit"
+													value="register">Register Now</button>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<!--notifications-->
+							<a href="#" id="notifications-wrong-login-wrong-pwd" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Wrong password!</strong><br />Please try again!"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-success-login" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="success"
+								data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Login successfully!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-register-duplicate-name" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>The username has been used!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-success-register" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="success"
+								data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Register successfully!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-ERROR-UNKNOWN" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Unknown error occurred</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-pwd-not-equal" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Password does not equal</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-register-duplicate-email" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>The email has been used!</strong>"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-warning-pwd-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="warning"
+								data-notify-msg="<i class='icon-warning-sign me-1'></i> <strong>Wrong password format</strong><br />Only supports numbers, letters and special symbols"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-warning-username-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="warning"
+								data-notify-msg="<i class='icon-warning-sign me-1'></i> <strong>Wrong username format</strong><br />Only supports numbers and letters"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-warning-email-format" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="warning"
+								data-notify-msg="<i class='icon-warning-sign me-1'></i> <strong>Wrong email format</strong><br />Please check and try again"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+							<a href="#" id="notifications-wrong-no-such-user" style="display: none"
+								data-notify-position="bottom-center" data-notify-type="error"
+								data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>User doesn not exist</strong><br />Please check and try again"
+								onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+
+							<span>Authors: </span>A<span class="middot">&middot;</span> B<span
+								class="middot">&middot;</span> C<span class="middot">&middot;</span> D
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		var cookies = {};
+		var inputRestriction2 = new RegExp("^[A-Za-z0-9]+$");
+		var inputRestriction6 = new RegExp('^[a-z0-9_]+\@[a-z0-9_.]{1,10}(.com|.cn|.net|.edu)$');
+
+		$('#login-form-submit').on('click',
+			function () {
+				var btnname = 'button-login';
+				var username = $("#login-form-username").val();
+				var password = $('#login-form-password').val();
+				var data = {
+					'buttonname': btnname,
+					'username': username,
+					'password': password
+				}
+
+				var password_nospace = password.replace(/\s+/g, '');
+				console.log(btnname, username, password_nospace.length, password.length);
+				if (password_nospace.length !== password.length) {
+					$("#notifications-warning-pwd-format").click();
+					return;
+				}
+
+				// --post--
+				$.ajax({
+					type: "POST",
+					dataType: "json",
+					contentType: "application/json",
+					url: "/login-register",
+					data: JSON.stringify(data),
+					success: function (result) {
+						if (result.message === 'login_success') {
+							$("#notifications-success-login").click();
+							setTimeout(function () {
+								window.location.href = "/shop?username=" + username
+							}, 1500)
+						}
+						else if (result.message === 'login_fail') {
+							$("#notifications-wrong-login-wrong-pwd").click();
+						} else if (result.message === 'login_fail_no_user') {
+							$("#notifications-wrong-no-such-user").click();
+						}
+
+					},
+					error: function (result) {
+						$("#notifications-ERROR-UNKNOWN").click();
+					}
+				})
+
+			})
+		$('#register-form-submit').on('click',
+			function () {
+				var btnname = 'button-register';
+				var usertyep = $("input[name='register-form-usertype']:checked").val();
+				var username = $("#register-form-username").val();
+				var email = $("#register-form-email").val();
+				var password = $('#register-form-password').val();
+				var repassword = $('#register-form-repassword').val();
+				// Does password contain space
+				var password_nospace = password.replace(/\s+/g, '');
+				console.log(btnname, username, password_nospace.length, password.length);
+				if (password_nospace.length !== password.length) {
+					$("#notifications-warning-pwd-format").click();
+					return;
+				}
+
+				if (password !== repassword) {
+					$("#notifications-wrong-pwd-not-equal").click();
+					return;
+				}
+
+				if (inputRestriction2.test(username) === false) {
+					$("#notifications-warning-username-format").click();
+					return;
+				}
+
+				if (inputRestriction6.test(email) === false) {
+					$("#notifications-warning-email-format").click();
+					return;
+				}
+
+				var data = {
+					'buttonname': btnname,
+					'usertype': usertyep,
+					'username': username,
+					'email': email,
+					'password': password
+				}
+				// --post--
+				$.ajax({
+					type: "POST",
+					dataType: "json",
+					contentType: "application/json",
+					url: "/login-register",
+					data: JSON.stringify(data),
+					success: function (result) {
+						if (result['code'] === 200) {
+							cookies['username'] = username
+							$("#notifications-success-register").click();
+							$("#headtab-login").click();
+						}
+						else if (result['code'] === 501) {
+							button1 = document.getElementById('notifications-wrong-register-duplicate-name');
+							$("#notifications-wrong-register-duplicate-name").click();
+						} else if (result['code'] === 502) {
+							$("#notifications-wrong-register-duplicate-email").click();
+						}
+						else {
+							console.log((result))
+							$("#notifications-ERROR-UNKNOWN").click();
+						}
+					},
+					error: function (result) {
+						$("#notifications-ERROR-UNKNOWN").click();
+					}
+				})
+			})
+
+		function headtab_login_onclick(self) {
+			if ('username' in cookies) {
+				$("#login-form-username").val(cookies['username']);
+			}
+			$("input[name='register-form-usertype']:checked").attr("checked", false);
+			$("#register-form-username").val('');
+			$("#register-form-email").val('');
+			$('#register-form-password').val('');
+			$('#register-form-repassword').val('');
+		}
+
+		function headtab_register_onclick(self) {
+			$("#login-form-username").val('');
+			$('#login-form-password').val('');
+		}
+
+
+
+		function header_home_fun() {
+			window.location.href = "/homepage";
+		}
+
+		function header_dresses_fun() {
+			window.location.href = "/shop?type=dresses";
+		}
+
+		function header_tops_fun() {
+			window.location.href = "/shop?type=tops";
+		}
+		function header_jeans_fun() {
+			window.location.href = "/shop?type=jeans";
+		}
+		function header_pants_fun() {
+			window.location.href = "/shop?type=pants";
+		}
+		function header_skirts_fun() {
+			window.location.href = "/shop?type=skirts";
+		}
+
+	</script>
+
+</body>
+
+</html>

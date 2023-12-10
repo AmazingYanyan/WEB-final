@@ -1,0 +1,85 @@
+<div class="single-product shop-quick-view-ajax">
+
+    <div class="ajax-modal-title">
+        <h2>
+            <%= item.product_name %>
+        </h2>
+    </div>
+
+    <div class="product modal-padding">
+
+        <div class="row gutter-40 col-mb-50">
+            <div class="col-md-6">
+                <div class="product-image">
+                    <div class="fslider" data-pagi="false">
+                        <div class="flexslider">
+                            <div class="slider-wrap">
+                                <% item.product_image.forEach(img=> { %>
+                                    <div class="slide">
+                                        <a style="cursor: default" href="#" title="<%= item.product_name %>"><img
+                                                style="cursor: default" src="<%= img %>" alt="prodcut images"></a>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (item.inventory_amount==0) { %>
+                        <div class="sale-flash badge bg-secondary p-2">Out of Stock</div>
+                        <% } else if (item.inventory_amount < 5) { %>
+                            <div class="sale-flash badge bg-secondary p-2">Only <%= item.inventory_amount %> available!
+                            </div>
+                            <% } else if (item.sale_price < item.original_price) { %>
+                                <div class="sale-flash badge bg-danger p-2">Sale!</div>
+                                <% } %>
+                </div>
+            </div>
+            <div class="col-md-6 product-desc">
+                <div class="class_product_id"></div>
+                <div class="product-price">
+                    <% if (item.original_price> item.sale_price) { %>
+                        <del>$<%= item.original_price %></del>
+                        <% } %>
+                            <ins val="<%= item.sale_price %>">$<%= item.sale_price %></ins>
+                </div>
+
+                <div class="clear"></div>
+                <div class="line"></div>
+
+                <!-- Product Single - Quantity & Cart Button -->
+                <form class="cart mb-0" method="post" enctype='multipart/form-data'>
+                    <div class="quantity">
+                        <input type="button" value="-" class="minus">
+                        <input type="text" step="1" min="1" name="quantity" value="1" title="Qty" class="qty"
+                            size="4" />
+                        <input type="button" value="+" class="plus">
+                    </div>
+                    <button onclick="btnsubmit(this)" type="button" class="add-to-cart button m-0">Add to cart</button>
+                </form><!-- Product Single - Quantity & Cart Button End -->
+
+                <div class="clear"></div>
+                <div class="line"></div>
+                <p id="small_shop_item_product_description">
+                    <%= item.product_description %>
+                </p>
+                <ul class="iconlist">
+                    <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
+                    <li><i class="icon-caret-right"></i> Lots of Size Options</li>
+                    <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                </ul>
+                <div class="card product-meta mb-0">
+                    <div class="card-body">
+                        <span itemprop="productID" class="sku_wrapper">PID: <span class="sku" val="<%= item.product_id %>">
+                                <%= item.product_id %>
+                            </span></span>
+                        <span class="posted_in">Category: <a style="cursor:default;" href="#" rel="tag">
+                                <%= item.product_type %>
+                            </a>.</span>
+                        <!-- Tagging can be added here if needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
