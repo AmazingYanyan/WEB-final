@@ -547,7 +547,7 @@
 				url: "/shop/add-cart",
 				data: JSON.stringify(data),
 				success: function (result) {
-					if (result['code'] === 200) {
+					if (result.code === 200) {
 						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Already add to cart!</strong')
 						$("#notifications-success").click();
 					}
@@ -580,7 +580,7 @@
 				url: "/shop/small-item",
 				data: JSON.stringify(data),
 				success: function (result) {
-					if (result['code'] === 200) {
+					if (result.code === 200) {
 						console.log('success')
 					}
 					else {
@@ -610,7 +610,7 @@
 				url: "/shop/small-item",
 				data: JSON.stringify(data),
 				success: function (result) {
-					if (result['code'] === 200) {
+					if (result.code === 200) {
 						console.log('success')
 					}
 					else {
@@ -644,7 +644,7 @@
 				url: "/shop/add_cart_small_shop",
 				data: JSON.stringify(data),
 				success: function (result) {
-					if (result['code'] === 200) {
+					if (result.code === 200) {
 						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Already add to cart!</strong')
 						$("#notifications-success").click();
 						$(".mfp-close").click()

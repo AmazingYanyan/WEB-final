@@ -7,7 +7,7 @@ const SalespersonSchema = new Schema({
     salesperson_email: String,
     job_title: String,
     store_id: Number,
-    manager_id: Number,
+    manager_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Manager' },
     salary: Number
   });
   

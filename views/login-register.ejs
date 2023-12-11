@@ -417,15 +417,15 @@
 					url: "/login-register",
 					data: JSON.stringify(data),
 					success: function (result) {
-						if (result['code'] === 200) {
+						if (result.code === 200) {
 							cookies['username'] = username
 							$("#notifications-success-register").click();
 							$("#headtab-login").click();
 						}
-						else if (result['code'] === 501) {
+						else if (result.code === 501) {
 							button1 = document.getElementById('notifications-wrong-register-duplicate-name');
 							$("#notifications-wrong-register-duplicate-name").click();
-						} else if (result['code'] === 502) {
+						} else if (result.code === 502) {
 							$("#notifications-wrong-register-duplicate-email").click();
 						}
 						else {

@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
             }
         }
 
-        const products = await Product.find({ is_sale: 'yes' }).sort({ product_id: 1 });
+        const products = await Product.find({ is_sale: true }).sort({ _id: 1 });
 
         const imgList = products.map(product => ({
             product_id: product._id,

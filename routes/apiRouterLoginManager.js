@@ -4,9 +4,22 @@ const router = express.Router()
 
 const Salesperson = require('../models/Salesperson');
 const Manager = require('../models/Manager');
+const session = require('express-session');
 
 router.get('/', async (req, res) => {
-    res.render("login-manager.ejs");
+    let data = req.query;
+    if(data && data.request_type== 'log-out'){
+        req.session.destroy((err) => {
+            if (err) {
+                console.error("Error destroying session:", err);
+                res.status(500).send("Internal Server Error");
+            }else{
+                res.json({ code: 200, message: 'log out' });
+            }
+        });
+    }else{
+        res.render("login-manager");
+    }
 });
 
 router.post('/', async (req, res) => {
@@ -17,6 +30,8 @@ router.post('/', async (req, res) => {
 
         if (user) {
             if(user.manager_password == password){
+                req.session.manager_name = username;
+                req.session.manager_id = user._id;
                 res.json({ code: 200, message: 'login_success' });
             }else{
                 res.json({ code: 401, message: 'login_fail' });

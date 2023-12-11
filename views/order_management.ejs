@@ -1,0 +1,334 @@
+<html lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>ShopItem</title>
+
+	<style>
+		.col-md-4 .button-3d {
+			box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%) !important;
+			text-decoration: none !important;
+			text-transform: none !important;
+			border-radius: 13px !important;
+			text-align: center !important;
+			color: #0F1111;
+			font-size: 14px !important;
+			margin-right: 0;
+			width: 90%;
+			letter-spacing: 0.5px !important;
+			line-height: 28px !important;
+			font-weight: 300 !important;
+		}
+
+		.col-md-4 .button-bottom:hover {
+			background: rgb(247, 250, 250) !important;
+		}
+
+		.col-md-4 .button-top:hover {
+			background: rgb(225, 184, 0) !important;
+		}
+
+		.col-md-12 .button-white {
+			box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%) !important;
+			border-radius: 13px !important;
+			text-transform: none !important;
+			font-size: 12px !important;
+			letter-spacing: 0.5px !important;
+			line-height: 22px !important;
+			border-color: #D5D9D9 !important;
+			border-style: solid;
+			margin-left: 0;
+			margin-top: 16px;
+			border-width: 1px
+		}
+
+		.line {
+			margin: 1rem 0;
+			border-top: 1px solid #d5d9d9;
+		}
+
+		.content-wrap .container {
+			max-width: none !important;
+			padding-right: 70px !important;
+			padding-left: 60px !important;
+		}
+
+		.line {
+			margin: 3px 0;
+			border-top: 1px solid #d5d9d9;
+		}
+
+		td {
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		th {
+			text-align: center;
+			vertical-align: middle;
+		}
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+    ============================================= -->
+		<header id="header" class="full-header">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+                    ============================================= -->
+						<div id="logo">
+							<a href="index.html" class="standard-logo" data-dark-logo="#"><img src="/images/mylogo.jpg"
+									alt="Canvas Logo"></a>
+							<a href="index.html" class="retina-logo" data-dark-logo="#"><img src="/images/mylogo@2x.jpg"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<!-- Content
+    ============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="col-12">
+						<h3>Wecomle to The Order Management Interface</h3>
+					</div>
+
+					<div class="clearfix ui-tabs-panel ui-corner-bottom ui-widget-content" id="tab-table"
+						role="tabpanel">
+						<p>Hello! <strong class="text-uppercase">
+								<%= salesperson_info[0].job_title %>.
+							</strong>
+							<%= salesperson_info[0].salesperson_name %>
+						</p>
+						<div class="table-responsive" style="overflow-x:hidden">
+							<div id="salesperson_id" style="display: none">
+								<%= salesperson_info[0].salesperson_id %>
+							</div>
+							<table id="datatable1" class="table">
+								<thead>
+									<tr>
+										<th id="th_order_id" style="width: 5%">Order id</th>
+										<th id="th_product_id" style="width: 5%">Product id</th>
+										<th id="th_product_name" style="width: 10%">Product name</th>
+										<th id="th_product_type" style="width: 5%">Product type</th>
+										<th id="th_sale_price" style="width: 5%">Sale price</th>
+										<th id="th_quantity" style="width: 5%">Quantity</th>
+										<th id="th_total_price" style="width: 5%">Total price</th>
+										<th id="th_order_date" style="width: 10%">Order time</th>
+										<th id="th_address" style="width: 10%">Address</th>
+										<th id="th_payment" style="width: 10%">Payment method</th>
+										<th id="th_order_status" style="width: 10%">Order status</th>
+										<th id="th_btn" style="width: 20%">#</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% order_list.forEach((order, index)=> { %>
+										<tr>
+											<% if (order.tag===1) { %>
+												<td rowspan="<%= order.product_rows %>" class="td_order_id">
+													<%= order.order_id %>
+												</td>
+												<% } %>
+													<td style="padding-bottom: 20px;padding-top: 20px;">
+														<%= order.product_id %>
+													</td>
+													<td>
+														<%= order.product_name %>
+													</td>
+													<td>
+														<%= order.product_type %>
+													</td>
+													<td>$<%= order.sale_price %>
+													</td>
+													<td>
+														<%= order.quantity %>
+													</td>
+													<% if (order.tag===1) { %>
+														<td rowspan="<%= order.product_rows %>">$<%= order.total_price
+																%>
+														</td>
+														<td rowspan="<%= order.product_rows %>">
+															<%= order.order_date %>
+														</td>
+														<td rowspan="<%= order.product_rows %>">
+															<%= order.address %>
+														</td>
+														<td rowspan="<%= order.product_rows %>">
+															<%= order.payment %>
+														</td>
+														<td rowspan="<%= order.product_rows %>">
+															<%= order.order_status %>
+														</td>
+														<td rowspan="<%= order.product_rows %>">
+															<div>
+																<a onclick="order_shipped(this)"
+																	style="opacity: 70%; width: 100%" href="#"
+																	class="button button-border button-border-thin button-green"><i
+																		class="icon-ok"></i>Inform Shipped</a>
+															</div>
+															<div>
+																<a onclick="order_canceled(this)"
+																	style="opacity: 70%; width: 100%" href="#"
+																	class="button button-border button-border-thin button-red"><i
+																		class="icon-warning-sign"></i>Inform
+																	Unavailable</a>
+															</div>
+														</td>
+														<% } %>
+										</tr>
+										<% }); %>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+    ============================================= -->
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+        ============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-5 text-center text-md-start">
+							WEB project--------------------------------<br>
+						</div>
+
+						<div class="col-md-8 text-center text-md-end">
+
+							<span>Authors: </span>A<span class="middot">&middot;</span> B<span
+								class="middot">&middot;</span> C<span class="middot">&middot;</span> D
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<a href="#" id="notifications-success" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="success" data-notify-msg="<i class='icon-ok-sign me-1'></i> <strong>Edit Success!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-db-connection" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error"
+		data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>Database connection error!</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+	<a href="#" id="notifications-ERROR-unknown" style="display: none" data-notify-position="bottom-center"
+		data-notify-type="error" data-notify-msg="<i class='icon-remove-sign me-1'></i> <strong>unknown error</strong>"
+		onclick="SEMICOLON.widget.notifications({ el: this }); return false;"></a>
+
+
+	<!-- JavaScripts
+============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Footer Scripts
+============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		function order_shipped(self) {
+			var order_id = $(self).parent().parent().parent().find(".td_order_id").text();
+
+			var data = {
+				'order_id': order_id,
+				'request_type': 'order_shipped'
+			};
+			// --post--
+			$.ajax({
+				type: "PUT",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/order_management/update-order",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Order has been shipped!</strong')
+						$("#notifications-success").click();
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			});
+		}
+
+		function order_canceled(self) {
+			var order_id = $(self).parent().parent().parent().find(".td_order_id").text();
+			var data = {
+				'order_id': order_id,
+				'request_type': 'order_canceled'
+			};
+			// --post--
+			$.ajax({
+				type: "PUT",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/order_management/update-order",
+				data: JSON.stringify(data),
+				success: function (result) {
+					if (result['code'] === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Order has been canceled!</strong')
+						$("#notifications-success").click();
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#notifications-ERROR-unknown").click();
+				}
+			});
+		}
+
+	</script>
+
+</body>
+
+</html>
