@@ -208,7 +208,7 @@
 								<label>Type:</label>
 								<select class="form-select required" name="input-edit-type" id="input-edit-type">
 									<option value="">-- Select Type --</option>
-									<option value="dresses">dresses</option>
+									<option value="dress">dresses</option>
 									<option value="tops">Tops</option>
 									<option value="jeans">Jeans</option>
 									<option value="pants">Pants</option>
@@ -637,7 +637,8 @@
 											<div class="clearfix ui-tabs-panel ui-corner-bottom ui-widget-content hidetab"
 												id="tab-profile" role="tabpanel" aria-hidden="true">
 												<p>This is the orders management interface, where you as a manager
-													can update the order status and check the all orders information. Besides, 
+													can update the order status and check the all orders information.
+													Besides,
 													a manager can cancel an order if needed.
 												</p>
 												<div class="table-responsive" style="overflow-x:hidden">
@@ -816,8 +817,10 @@
 							<div class="fancy-title topmargin title-border">
 								<h4>About Me</h4>
 							</div>
-							<div style="border: 1px solid #4d4d4d; border-radius: 6px; padding-left: 1em;padding-top: 0.85em;padding-right: 1em;padding-bottom: 0.85em;"> Welcome to the admin interface, where you can manage
-								all products, orders and customer information.  We hope you have a good experience!</div>
+							<div
+								style="border: 1px solid #4d4d4d; border-radius: 6px; padding-left: 1em;padding-top: 0.85em;padding-right: 1em;padding-bottom: 0.85em;">
+								Welcome to the admin interface, where you can manage
+								all products, orders and customer information. We hope you have a good experience!</div>
 							<div class="fancy-title topmargin title-border">
 								<h4>Social Profiles</h4>
 							</div>
@@ -1232,58 +1235,43 @@
 		}
 
 		function submit_product_add_click(self) {
-			var product_name2 = $("#input-add-name").val();
-			var product_image2 = $("#input-add-img").val();
-			var sale_price2 = $("#input-add-price").val();
-			var inventory_amount2 = $("#input-add-inventory").val();
-			var product_type2 = $("#input-add-type").val();
-			var is_sale2 = $("input[name='input-add-issale']:checked").val();
-			var product_description2 = $("#input-add-des").val();
-			var data_list = {};
-			data_list['product_name'] = stringformat("{0}", product_name2);
-			data_list['product_image'] = stringformat("{0}", product_image2);
-			data_list['sale_price'] = sale_price2;
-			data_list['inventory_amount'] = inventory_amount2;
-			data_list['product_type'] = stringformat("{0}", product_type2);
-			data_list['is_sale'] = stringformat("{0}", is_sale2);
-			data_list['product_description'] = stringformat("{0}", product_description2);
-			var length = Object.keys(data_list).length;
-			console.log(data_list);
-			if (length != 0) {
-				data_list['request_type'] = 'sql_add_product';
+			var formData = new FormData();
+			formData.append('product_name', $("#input-add-name").val());
+			formData.append('product_image', document.getElementById("input-add-img").files[0]); // Attach the file
+			formData.append('sale_price', $("#input-add-price").val());
+			formData.append('inventory_amount', $("#input-add-inventory").val());
+			formData.append('product_type', $("#input-add-type").val());
+			formData.append('is_sale', $("input[name='input-add-issale']:checked").val());
+			formData.append('product_description', $("#input-add-des").val());
+			formData.append('request_type', 'sql_add_product');
 
-				// --post--
-				$.ajax({
-					type: "POST",
-					dataType: "json",
-					contentType: "application/json",
-					url: "/management/newproduct",
-					data: JSON.stringify(data_list),
-					success: function (result) {
-						if (result.code === 200) {
-							$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Successfully add a product!</strong')
-							$("#notifications-success").click();
-							setTimeout(function () {
-								window.location.reload(true);
-							}, 500)
-						}
-						else if (result.code === 501) {
-							// edit violate db rules
-						}
-						else {
-							$("#notifications-ERROR-db-connection").click();
-						}
-					},
-					error: function (result) {
-						$("#close_product_edit").click();
-						$("#notifications-ERROR-unknown").click();
+			// --post--
+			$.ajax({
+				type: "POST",
+				url: "/management/newproduct",
+				data: formData,
+				processData: false,
+				contentType: false, 
+				success: function (result) {
+					if (result.code === 200) {
+						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Successfully Create A Product!</strong')
+						$("#notifications-success").click();
+						setTimeout(function () {
+							window.location.reload(true);
+						}, 500)
 					}
-				})
-			}
-			else {
-				$("#close_product_edit").click();
-				console.log('haha')
-			}
+					else if (result.code === 501) {
+						// edit violate db rules
+					}
+					else {
+						$("#notifications-ERROR-db-connection").click();
+					}
+				},
+				error: function (result) {
+					$("#close_product_edit").click();
+					$("#notifications-ERROR-unknown").click();
+				}
+			})
 		}
 
 		function edit_product(self) {

@@ -1,5 +1,7 @@
 // Route handlers
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router()
 
 const Manager = require('../models/Manager');
@@ -7,6 +9,7 @@ const Product = require('../models/Product');
 const Customer = require('../models/Customer');
 const Order = require('../models/Order');
 const OrdersProduct = require('../models/OrdersProduct');
+const Store = require('../models/Store');
 const session = require('express-session');
 
 function formatArrivingDate(date) {
@@ -18,6 +21,21 @@ function formatDate(date) {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     return new Date(date).toLocaleDateString('en-US', options);
 }
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const dir = path.join(__dirname,'..', 'public/images/shop');
+        cb(null, dir);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage }).fields([
+    { name: 'product_image', maxCount: 1 },
+    { name: 'product_type', maxCount: 1 }
+  ]);
 
 router.get('/', async (req, res) => {
     let username = req.query.username || req.session.manager_name;
@@ -91,7 +109,6 @@ router.get('/', async (req, res) => {
         res.status(500).send("Please log-in your manager account first.");
     }
 });
-
 
 
 router.get('/refresh', async (req, res) => {
@@ -169,21 +186,22 @@ router.put('/delete', async (req, res) => {
     }
 });
 
-router.post('/newproduct', async (req, res) => {
+router.post('/newproduct', upload.single('product_image'), async (req, res) => {
     const data = req.body;
+    console.log(data);
+    const productType = req.body.product_type;
+    const dir = path.join(__dirname, 'public/images/shop', productType);
 
     if (data.request_type === 'sql_add_product') {
         try {
-            // Remove request_type from data as it's not part of the Product model
             delete data.request_type;
 
-            // If sale_price is provided, set original_price to the same value
             if (data.sale_price) {
                 data.original_price = data.sale_price;
             }
-
-            // Assuming store_id is provided or set to a default value
-            data.store_id = data.store_id || 1;
+            const store = await Store.findOne({store_name:"NIKE"})
+            data.store_id = store._id;
+            data.product_image = req.file.path;
 
             // Create a new product
             const newProduct = new Product(data);
