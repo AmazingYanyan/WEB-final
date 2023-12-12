@@ -147,7 +147,7 @@
 						<nav class="primary-menu">
 
 							<ul class="menu-container">
-								<li class="menu-item"> 
+								<li class="menu-item">
 									<a onclick="header_home_fun(this)" id="header_home" class="menu-link" href="#">
 										<div>Home</div>
 									</a>
@@ -177,7 +177,7 @@
 										<div>Skirts</div>
 									</a>
 								</li>
-								<li class="menu-item"> 
+								<li class="menu-item">
 
 									<a class="menu-link" href="#">
 										<div>Account</div>
@@ -205,7 +205,7 @@
 
 						</nav><!-- #primary-menu end -->
 
-						<form class="top-search-form" action="#" method="get"> 
+						<form class="top-search-form" action="#" method="get">
 							<input type="text" name="q" class="form-control" value=""
 								placeholder="Search your favorites" autocomplete="off">
 						</form>
@@ -253,17 +253,32 @@
 											</h5>
 										</div>
 										<div class="row">
-											<div class="col-md-5  text-center order_status" val="<%= item.order_status %>">
-												<% if(item.order_status=="ordered"){ %>
-												<span style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
-													-- SHIPPING...
-												</span>
-												<% } %>
-												<% if(item.order_status=="ordered"){ %>
-												<span style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
-													-- RETURNED...
-												</span>
-												<% } %>
+											<div class="col-md-5  text-center order_status"
+												val="<%= item.order_status %>">
+												<% if(item.order_status=="ordered" ){ %>
+													<span
+														style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+														-- ORDERED...
+													</span>
+													<% } %>
+														<% if(item.order_status=="returning" ){ %>
+															<span
+																style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+																-- RETURNED...
+															</span>
+															<% } %>
+																<% if(item.order_status=="canceled" ){ %>
+																	<span
+																		style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+																		-- CANCELED...
+																	</span>
+																	<% } %>
+																		<% if(item.order_status=="shipped" ){ %>
+																			<span
+																				style="color: rgb(60, 60, 60);padding: 0.3em 1em;font-size: 0.95em; border: 1px solid rgb(25, 25, 25); border-radius: 9px;box-sizing: border-box;">
+																				-- SHIPPING...
+																			</span>
+																			<% } %>
 											</div>
 											<div class="col-md-7">
 												<a onclick="btn_detail(this)"
@@ -350,13 +365,13 @@
 					<div class="row col-mb-30">
 
 						<div class="col-md-5 text-center text-md-start">
-							WEB project--------------------------------<br>
+							2560 NETWORK & WEB DATA TECHNLGIES FINAL PRJECT--------------------------------<br>
 						</div>
 
 						<div class="col-md-8 text-center text-md-end">
 
-							<span>Authors: </span>A <span class="middot">&middot;</span> B <span
-								class="middot">&middot;</span> C
+							<span>Authors: </span>Yo-Hsin<span class="middot">&middot;</span> Mawadah<span
+								class="middot">&middot;</span> Edgar<span class="middot">&middot;</span> Yanyan
 						</div>
 
 					</div>
@@ -438,8 +453,8 @@
 		}
 
 		function btn_return(self) {
-			var card = $(self).parent().parent().parent().parent().parent();
-			var order_id = card.find(".orderid").text();
+			let card = $(self).closest('.card');
+			var order_id = card.find(".orderid").attr('val').trim();
 			var data = {
 				'order_id': order_id,
 				'request_type': 'return_order'

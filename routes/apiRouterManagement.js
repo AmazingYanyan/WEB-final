@@ -32,10 +32,9 @@ const storage = multer.diskStorage({
         cb(null, uniqueSuffix + path.extname(file.originalname));
     }
 });
-const upload = multer({ storage: storage }).fields([
+const upload = multer({ storage: storage }).fields(
     { name: 'product_image', maxCount: 1 },
-    { name: 'product_type', maxCount: 1 }
-  ]);
+  );
 
 router.get('/', async (req, res) => {
     let username = req.query.username || req.session.manager_name;
@@ -186,7 +185,7 @@ router.put('/delete', async (req, res) => {
     }
 });
 
-router.post('/newproduct', upload.single('product_image'), async (req, res) => {
+router.post('/newproduct', upload, async (req, res) => {
     const data = req.body;
     console.log(data);
     const productType = req.body.product_type;
@@ -349,7 +348,29 @@ router.get('/plot', async (req, res) => {
                 };
             }));
 
-            res.json({ code: 200, topProductsData: topProductsData });
+            const dates = [];
+            for (let i = 0; i < 5; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                dates.push(date);
+            }
+
+            const dailySales = await Promise.all(dates.map(async (date) => {
+                const startOfDay = new Date(date.setHours(0,0,0,0));
+                const endOfDay = new Date(date.setHours(23,59,59,999));
+
+                const totalSales = await OrdersProduct.aggregate([
+                    { $match: { createdAt: { $gte: startOfDay, $lte: endOfDay } } },
+                    { $group: { _id: null, totalQuantity: { $sum: "$quantity" } } }
+                ]);
+
+                return {
+                    date: startOfDay,
+                    totalQuantity: totalSales.length > 0 ? totalSales[0].totalQuantity : 0
+                };
+            }));
+
+            res.json({ code: 200, topProductsData: topProductsData, dailySales: dailySales });
         } catch (error) {
             console.error(error);
             res.status(500).json({ code: 500, message: 'Internal Server Error' });

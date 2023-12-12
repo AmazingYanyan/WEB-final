@@ -58,7 +58,8 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/return-order', async (req, res) => {
-    const data = req.body.data;
+    const data = req.body;
+    console.log(data)
     if (data && data.request_type === 'return_order') {
         const orderId = data.order_id;
         try {

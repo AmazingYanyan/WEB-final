@@ -768,10 +768,10 @@
 												<p>Order Statistics Analysis.</p>
 												<div class="row">
 													<div class="col-md-6">
-														<canvas id="myChart1" width="auto" height="500px"></canvas>
+														<canvas id="myChart1" width="500px" height="500px"></canvas>
 													</div>
 													<div class="col-md-6">
-														<canvas id="myChart2" width="auto" height="500px"></canvas>
+														<canvas id="myChart2" width="500px" height="500px"></canvas>
 													</div>
 												</div>
 											</div>
@@ -824,27 +824,27 @@
 							<div class="fancy-title topmargin title-border">
 								<h4>Social Profiles</h4>
 							</div>
-							<a href="#" class="social-icon si-facebook si-small si-rounded si-light" title="Facebook">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-facebook si-small si-rounded si-light" title="Facebook">
 								<i class="icon-facebook"></i>
 								<i class="icon-facebook"></i>
 							</a>
-							<a href="#" class="social-icon si-gplus si-small si-rounded si-light" title="Google+">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-gplus si-small si-rounded si-light" title="Google+">
 								<i class="icon-gplus"></i>
 								<i class="icon-gplus"></i>
 							</a>
-							<a href="#" class="social-icon si-dribbble si-small si-rounded si-light" title="Dribbble">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-dribbble si-small si-rounded si-light" title="Dribbble">
 								<i class="icon-dribbble"></i>
 								<i class="icon-dribbble"></i>
 							</a>
-							<a href="#" class="social-icon si-flickr si-small si-rounded si-light" title="Flickr">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-flickr si-small si-rounded si-light" title="Flickr">
 								<i class="icon-flickr"></i>
 								<i class="icon-flickr"></i>
 							</a>
-							<a href="#" class="social-icon si-linkedin si-small si-rounded si-light" title="LinkedIn">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-linkedin si-small si-rounded si-light" title="LinkedIn">
 								<i class="icon-linkedin"></i>
 								<i class="icon-linkedin"></i>
 							</a>
-							<a href="#" class="social-icon si-twitter si-small si-rounded si-light" title="Twitter">
+							<a href="https://github.com/AmazingYanyan/WEB-final" class="social-icon si-twitter si-small si-rounded si-light" title="Twitter">
 								<i class="icon-twitter"></i>
 								<i class="icon-twitter"></i>
 							</a>
@@ -866,13 +866,13 @@
 					<div class="row col-mb-30">
 
 						<div class="col-md-6 text-center text-md-start">
-							WEB project--------------------------------<br>
+							2560 NETWORK & WEB DATA TECHNLGIES FINAL PRJECT--------------------------------<br>
 						</div>
 
 						<div class="col-md-6 text-center text-md-end">
 
-							<span>Authors: </span>A <span class="middot">&middot;</span> V <span
-								class="middot">&middot;</span> C
+							<span>Authors: </span>Yo-Hsin<span class="middot">&middot;</span> Mawadah<span
+							class="middot">&middot;</span> Edgar<span class="middot">&middot;</span> Yanyan
 						</div>
 
 					</div>
@@ -943,6 +943,7 @@
 					if (result.code === 200) {
 						local_cookies.img_list = result.img_list;
 						local_cookies.product_list = result.product_id;
+						localStorage.setItem('img_list', result.img_list);
 						// console.log(local_cookies);
 					}
 					else {
@@ -1020,14 +1021,75 @@
 				data: data,
 				success: function (result) {
 					if (result.code === 200) {
-						const topProductsData = result.topProductsData;
-						drawTopProductsChart(topProductsData);
+						drawTopProductsChart(result.topProductsData);
+						drawDailySalesChart(result.dailySales);
 					} else {
 						$("#notifications-ERROR-db-connection").click();
 					}
 				}
 			});
 		})
+
+		function drawDailySalesChart(data) {
+			const canvas = document.getElementById('myChart2');
+			const ctx = canvas.getContext('2d');
+
+			const chartWidth = canvas.width;
+			const chartHeight = canvas.height;
+			const maxValue = Math.max(...data.map(item => item.totalQuantity));
+			const scale = (chartHeight - 100) / maxValue;
+
+			ctx.clearRect(0, 0, chartWidth, chartHeight);
+
+			ctx.fillStyle = '#333';
+			ctx.font = '20px Arial';
+			ctx.fillText('Daily Sales (Last 5 Days)', chartWidth / 2 - 100, 30);
+
+			ctx.font = '16px Arial';
+			ctx.fillStyle = '#333';
+			ctx.textAlign = 'center';
+
+			data = data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+			for (let i = 0; i < data.length; i++) {
+				let x = (chartWidth / 6) * (i + 1);
+				ctx.fillText(formatDate(data[i].date), x, chartHeight - 30);
+			}
+
+			ctx.beginPath();
+			ctx.strokeStyle = '#3498db';
+			ctx.lineWidth = 3;
+			data.forEach((item, index) => {
+				const x = (chartWidth / 6) * (index + 1);
+				const y = chartHeight - (item.totalQuantity * scale) - 20; 
+				if (index === 0) ctx.moveTo(x, y);
+				else ctx.lineTo(x, y);
+			});
+			ctx.stroke();
+
+			ctx.font = '12px Arial';
+			data.forEach((item, index) => {
+				const x = (chartWidth / 6) * (index + 1);
+				const y = chartHeight - (item.totalQuantity * scale) - 20; 
+
+				ctx.beginPath();
+				ctx.arc(x, y, 5, 0, Math.PI * 2);
+				ctx.fillStyle = '#2ecc71';
+				ctx.fill();
+
+				ctx.fillStyle = '#333';
+				ctx.fillText(item.totalQuantity, x, y - 10);
+			});
+			ctx.rotate(-Math.PI / 2);
+			ctx.textAlign = 'right';
+			ctx.fillText('Quantity', -50, 30);
+			ctx.restore();
+		}
+
+		function formatDate(date) {
+			const d = new Date(date);
+			return `${d.getMonth() + 1}/${d.getDate()}`;
+		}
 
 		function drawTopProductsChart(data) {
 			const canvas = document.getElementById('myChart1');
@@ -1042,7 +1104,7 @@
 			ctx.clearRect(0, 0, chartWidth, chartHeight);
 			data.forEach((item, index) => {
 				const barHeight = item.totalQuantity * scale;
-				const x = (barWidth + barGap) * index + 30;
+				const x = (barWidth + barGap) * index;
 				const y = chartHeight - barHeight - 20;
 				ctx.fillStyle = '#1abc9c';
 				ctx.fillRect(x, y, barWidth, barHeight);
@@ -1251,7 +1313,7 @@
 				url: "/management/newproduct",
 				data: formData,
 				processData: false,
-				contentType: false, 
+				contentType: false,
 				success: function (result) {
 					if (result.code === 200) {
 						$("#notifications-success").attr('data-notify-msg', '<i class=\'icon-ok-sign me-1\'></i> <strong>Successfully Create A Product!</strong')
@@ -1280,6 +1342,7 @@
 			var product_id = td.attr('data-value');
 			var product_name = td.next().attr('data-value');
 			var product_image;
+			var img_list = localStorage.img_list;
 			for (i = 0; i < local_cookies['img_list'].length; i++) {
 				console.log(local_cookies[i])
 				if (product_id === local_cookies['img_list'][i][0]) {
